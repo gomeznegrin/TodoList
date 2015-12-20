@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "TodoLists";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+@{ 
+    if (ViewData["TodoListItems"] != null)
+    {
+        @Html.Raw("<ul>");
+        foreach(TodoListItems t in (IEnumerable<TodoListItems>)ViewData["TodoListItems"])
+        {
+            @Html.Raw("<li>" + t.Title + "</li>");
+
+
+        }
+        @Html.Raw("</ul>");
+
+    }
+    else
+    {
+        @Html.Raw("<p>No tiene elementos en la lista... </p>");
+
+    }
+}
