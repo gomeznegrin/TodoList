@@ -5,21 +5,24 @@
 <h3>@ViewData["Message"]</h3>
 
 @{ 
-    if (ViewData["TodoListItems"] != null)
-    {
-        @Html.Raw("<ul>");
-        foreach(TodoListItems t in (IEnumerable<TodoListItems>)ViewData["TodoListItems"])
+     
+        if (ViewData["TodoListItems"] != null)
         {
-            @Html.Raw("<li>" + t.Title + "</li>");
-
+            @Html.Raw("<ul>");
+            
+                foreach (TodoListItems t in (IEnumerable<TodoListItems>)ViewData["TodoListItems"])
+                {
+                    @Html.CheckBox(t.Title, t.isCompleted);
+                    @Html.Raw(t.Title);
+                    @Html.Raw("<br>");
+                }
+            
+            @Html.Raw("</ul>");
 
         }
-        @Html.Raw("</ul>");
-
+        else
+        {
+            @Html.Raw("<p>No tiene elementos en la lista... </p>");
+        }
+        @Html.Raw("<br><button type='submit' value='Actualizar'>Actualizar</button>");
     }
-    else
-    {
-        @Html.Raw("<p>No tiene elementos en la lista... </p>");
-
-    }
-}
